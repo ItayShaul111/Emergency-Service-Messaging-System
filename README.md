@@ -99,7 +99,7 @@ join police
 report ../events1.json
 ```
 
-#### Terminal 1 - Alice again
+#### Terminal 1 - Alice
 ```bash
 summary police Bob ../events1_out.txt
 logout
@@ -108,6 +108,25 @@ logout
 #### Terminal 2 - Bob
 ```bash
 logout
+```
+
+---
+
+## 🖥️ Client Command Reference
+
+| Command                                | Description |
+|----------------------------------------|-------------|
+| `login <host>:<port> <user> <pass>`   | Connects to the server and authenticates the client. |
+| `join <topic>`                        | Subscribes to a topic (e.g., police, fire, etc.). |
+| `exit <topic>`                        | Unsubscribes from a topic. |
+| `report <path>`                       | Sends events to the server from a JSON file. |
+| `summary <topic> <user> <path>`       | Requests a summary of all events reported by a user on a topic. Output saved to path. |
+| `logout`                              | Gracefully disconnects the client from the server. |
+
+### 📝 Example
+```bash
+report ../events1.json
+summary police Bob ../events1_out.txt
 ```
 
 ---
