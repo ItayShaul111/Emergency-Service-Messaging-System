@@ -132,16 +132,36 @@ summary police Bob ../events1_out.txt
 ---
 
 ## 📊 Event File Format
-Event report files should be in JSON format, for example:
+Event report files should be in JSON format with the following structure:
 
 ```json
 {
-  "eventName": "Robbery",
-  "location": "Main Street",
-  "description": "Bank was robbed at 12:00PM",
-  "time": "2025-03-20T12:00:00"
+  "channel_name": "<topic_name>",
+  "events": [
+    {
+      "event_name": "<string>",
+      "city": "<string>",
+      "date_time": <unix_timestamp>,
+      "description": "<string>",
+      "general_information": {
+        "active": <boolean>,
+        "forces_arrival_at_scene": <boolean>
+      }
+    },
+    ...
+  ]
 }
 ```
+
+- `channel_name` defines the topic to which the events will be published.
+- Each event includes metadata such as name, location, and time.
+- The `date_time` field should be a UNIX timestamp (in seconds).
+- `general_information.active` indicates whether the event is ongoing.
+- `general_information.forces_arrival_at_scene` indicates whether emergency forces arrived at the scene.
+
+You may include multiple events in the `events` array, as shown above.
+
+> Example files can be found under the project root, such as `events1.json`.
 Multiple such events can be sent as a JSON array.
 
 ---
